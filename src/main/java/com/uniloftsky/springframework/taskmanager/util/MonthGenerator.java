@@ -19,26 +19,25 @@ public final class MonthGenerator {
 
     public static Month generateMonth(LocalDate localDate) {
         YearMonth yearMonth = YearMonth.of(localDate.getYear(), localDate.getMonth());
-        Month month = Month.builder()
+        return Month.builder()
                 .daysCount(yearMonth.lengthOfMonth())
                 .weeksCount(yearMonth.lengthOfMonth() / 7)
                 .name(getMonthName(yearMonth))
                 .nextMonth(localDate.plusMonths(1))
                 .prevMonth(localDate.minusMonths(1))
+                .days(fillMonthWithDays(yearMonth))
                 .build();
-        fillMonthWithDays(month, yearMonth);
-        return month;
     }
 
-    private static void fillMonthWithDays(Month month, YearMonth yearMonth) {
+    private static Set<Day> fillMonthWithDays(YearMonth yearMonth) {
         Set<Day> days = new TreeSet<>();
-        for (int i = 1; i <= month.getDaysCount(); i++) {
+        for (int i = 1; i <= yearMonth.lengthOfMonth(); i++) {
             days.add(Day.builder()
                     .dayDate(yearMonth.atDay(i))
                     .dayIndex(i)
                     .dayOfWeek(getDayOfWeek(yearMonth.atDay(i))).build());
         }
-        month.setDays(days);
+        return days;
     }
 
     public static DaysOfWeek getDayOfWeek(LocalDate localDate) {
@@ -64,12 +63,13 @@ public final class MonthGenerator {
     }
 
     private static String getMonthName(YearMonth yearMonth) {
+        String name = "";
         for (MonthName monthName : MonthName.values()) {
             if (yearMonth.getMonth().name().equals(monthName.name())) {
-                return monthName.getLabel();
+                name = monthName.getLabel();
             }
         }
-        return "";
+        return name;
     }
 
 }
