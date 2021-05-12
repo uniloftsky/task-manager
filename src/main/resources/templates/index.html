@@ -12,7 +12,7 @@
     <p th:text="${month.weeksCount}"></p>
     <ul class="calendar">
         <li class="day" th:each="day: ${month.days}">
-            <p th:text="${day.name}"></p>
+            <p th:text="${day.dayOfWeek.label}"></p>
             <p th:text="${day.dayDate}"></p>
             <p th:text="${day.dayIndex}"></p>
         </li>

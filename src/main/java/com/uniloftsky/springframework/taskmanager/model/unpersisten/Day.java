@@ -1,9 +1,6 @@
 package com.uniloftsky.springframework.taskmanager.model.unpersisten;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -11,15 +8,15 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Day implements Comparable {
+@Builder
+public class Day implements Comparable<Day> {
 
     private LocalDate dayDate;
-    private String name;
+    private DaysOfWeek dayOfWeek;
     private int dayIndex;
 
     @Override
-    public int compareTo(Object o) {
-        Day day = (Day) o;
+    public int compareTo(Day day) {
         if (dayIndex > day.dayIndex) {
             return 1;
         } else {

@@ -25,7 +25,7 @@ public class IndexController {
 
     @GetMapping(value = "/", params = "date")
     public String getIndexPageWithDate(@RequestParam("date") String date, Model model) {
-        model.addAttribute("month", monthService.getMonth(date));
+        model.addAttribute("month", monthService.getMonth(LocalDate.parse(date)));
         return "index";
     }
 
