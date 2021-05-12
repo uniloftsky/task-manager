@@ -9,7 +9,7 @@
 
 <h1 th:text="${month.name}"></h1>
 
-<div>
+<!--<div>
     <ul class="calendar">
         <li class="test">
             <p class="title">пн</p>
@@ -54,19 +54,48 @@
             </div>
         </li>
         <li class="test">
-            <p class="title">вс<p>
+            <p class="title">вс</p>
             <div class="test-inner">
                 <p th:each="day : ${month.days}" th:if="${day.dayOfWeek.name == 'SUNDAY'}"
                    th:text="${day.dayIndex}"></p>
             </div>
         </li>
-        <!--        <li class="day" th:each="day: ${month.days}">
-                    <p th:text="${day.dayOfWeek.label}"></p>
-                    <p th:text="${day.dayDate}"></p>
-                    <p th:text="${day.dayIndex}"></p>
-                </li>-->
+    </ul>
+</div>-->
+<div class="calendar">
+    <ul class="calendar-inner">
+        <li>пн</li>
+        <li>вт</li>
+        <li>ср</li>
+        <li>чт</li>
+        <li>пт</li>
+        <li>сб</li>
+        <li>вс</li>
+    </ul>
+    <ul class="calendar-inner">
+        <li th:each="day : ${month.days}" th:text="${day.dayIndex}"></li>
     </ul>
 </div>
+<!--<div>
+    <table>
+        <thead>
+        <tr>
+            <th>пн</th>
+            <th>вт</th>
+            <th>ср</th>
+            <th>чт</th>
+            <th>пт</th>
+            <th>сб</th>
+            <th>вс</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:each="day : ${month.days}" th:text="${day.dayIndex}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>-->
 <a th:href="@{/(date=${month.prevMonth})}"><</a>
 <a th:href="@{/(date=${month.nextMonth})}">></a>
 

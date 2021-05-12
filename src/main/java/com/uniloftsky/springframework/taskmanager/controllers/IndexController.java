@@ -17,7 +17,12 @@ public class IndexController {
         this.monthService = monthService;
     }
 
-    @GetMapping({"/*", "*"})
+    @GetMapping("*")
+    public String redirectToIndexPage() {
+        return "redirect:/";
+    }
+
+    @GetMapping({"/index", "/"})
     public String getIndexPage(Model model) {
         model.addAttribute("month", monthService.getMonth(LocalDate.now()));
         return "index";

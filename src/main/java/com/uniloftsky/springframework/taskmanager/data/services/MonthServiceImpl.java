@@ -1,12 +1,10 @@
 package com.uniloftsky.springframework.taskmanager.data.services;
 
-import com.uniloftsky.springframework.taskmanager.model.unpersisten.Day;
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.Month;
 import com.uniloftsky.springframework.taskmanager.util.MonthGenerator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Service
 public class MonthServiceImpl implements MonthService {
@@ -16,8 +14,8 @@ public class MonthServiceImpl implements MonthService {
         return MonthGenerator.generateMonth(date);
     }
 
-    @Override
+/*    @Override
     public Set<Day> getMonthDays(Month month) {
         return month.getDays();
-    }
+    }*/
 }

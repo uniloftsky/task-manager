@@ -8,37 +8,16 @@ body {
     font-size: 1rem;
 }
 
-/*.calendar {
+.calendar {
+    max-width: 350px;
+}
+
+.calendar-inner {
     display: flex;
     flex-wrap: wrap;
-}*/
-
-.day {
-    width: 16vw;
+    list-style: none;
 }
 
-.test {
-    display: flex;
-}
-
-.test-inner {
-    display: flex;
-    min-width: 200px;
-    justify-content: space-between;
-}
-
-.test-inner p {
-    display: block;
-}
-
-/*.test:first-child .test-inner {
-    justify-content: flex-end;
-}
-
-.test:last-child .test-inner {
-    justify-content: flex-start;
-}*/
-
-.title {
-    margin-right: 10px;
+.calendar-inner li {
+    min-width: 50px;
 }
