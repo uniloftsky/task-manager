@@ -11,9 +11,19 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Day {
+public class Day implements Comparable {
 
     private LocalDate dayDate;
     private String name;
+    private int dayIndex;
 
+    @Override
+    public int compareTo(Object o) {
+        Day day = (Day) o;
+        if (dayIndex > day.dayIndex) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

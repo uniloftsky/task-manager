@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.TreeSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Month {
 
     private int daysCount;
     private int weeksCount;
-    private TreeSet<Day> days;
+    private Set<Day> days;
     private LocalDate monthDate;
 
 }
