@@ -46,19 +46,19 @@ public final class MonthGenerator {
         int dayOFWeek = calendar.get(Calendar.DAY_OF_WEEK);
         switch (dayOFWeek) {
             case 1:
-                return DaysOfWeek.MONDAY;
-            case 2:
-                return DaysOfWeek.TUESDAY;
-            case 3:
-                return DaysOfWeek.WEDNESDAY;
-            case 4:
-                return DaysOfWeek.THURSDAY;
-            case 5:
-                return DaysOfWeek.FRIDAY;
-            case 6:
-                return DaysOfWeek.SATURDAY;
-            default:
                 return DaysOfWeek.SUNDAY;
+            case 2:
+                return DaysOfWeek.MONDAY;
+            case 3:
+                return DaysOfWeek.TUESDAY;
+            case 4:
+                return DaysOfWeek.WEDNESDAY;
+            case 5:
+                return DaysOfWeek.THURSDAY;
+            case 6:
+                return DaysOfWeek.FRIDAY;
+            default:
+                return DaysOfWeek.SATURDAY;
         }
     }
 

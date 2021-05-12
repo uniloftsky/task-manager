@@ -8,11 +8,38 @@ body {
     font-size: 1rem;
 }
 
-.calendar {
+/*.calendar {
     display: flex;
     flex-wrap: wrap;
-}
+}*/
 
 .day {
     width: 16vw;
+}
+
+.test {
+    display: flex;
+}
+
+.test-inner {
+    display: flex;
+    min-width: 500px;
+}
+
+.test-inner p {
+    min-width: 25px;
+    display: block;
+    margin-right: 10px;
+}
+
+.test:first-child .test-inner {
+    justify-content: flex-end;
+}
+
+.test:last-child .test-inner {
+    justify-content: flex-start;
+}
+
+.title {
+    margin-right: 10px;
 }

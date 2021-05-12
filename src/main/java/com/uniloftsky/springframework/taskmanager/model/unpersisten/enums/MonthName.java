@@ -11,7 +11,7 @@ public enum MonthName {
     JULY("Июль"),
     AUGUST("Август"),
     SEPTEMBER("Сентябрь"),
-    OCTOBER("Октабрь"),
+    OCTOBER("Октябрь"),
     NOVEMBER("Ноябрь"),
     DECEMBER("Декабрь");
 
