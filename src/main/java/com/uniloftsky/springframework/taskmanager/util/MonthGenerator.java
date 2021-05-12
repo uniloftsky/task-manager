@@ -40,7 +40,7 @@ public final class MonthGenerator {
         return days;
     }
 
-    public static DaysOfWeek getDayOfWeek(LocalDate localDate) {
+    private static DaysOfWeek getDayOfWeek(LocalDate localDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Date.valueOf(localDate));
         int dayOFWeek = calendar.get(Calendar.DAY_OF_WEEK);

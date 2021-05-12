@@ -13,7 +13,6 @@ public class MonthServiceImpl implements MonthService {
 
     @Override
     public Month getMonth(LocalDate date) {
-        Month month = MonthGenerator.generateMonth(date);
         return MonthGenerator.generateMonth(date);
     }
 
