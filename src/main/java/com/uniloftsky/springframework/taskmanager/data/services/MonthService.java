@@ -8,6 +8,7 @@ import java.util.Set;
 
 public interface MonthService {
 
+    Month getMonth(String date);
     Month getMonth(LocalDate date);
     Set<Day> getMonthDays(Month month);
 

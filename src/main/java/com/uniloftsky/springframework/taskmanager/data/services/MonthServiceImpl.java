@@ -13,21 +13,34 @@ import java.util.TreeSet;
 public class MonthServiceImpl implements MonthService {
 
     @Override
+    public Month getMonth(String date) {
+        return generateMonth(LocalDate.parse(date));
+    }
+
+    @Override
     public Month getMonth(LocalDate date) {
-        YearMonth yearMonth = YearMonth.of(date.getYear(), date.getMonth());
-        Month month = new Month();
-        month.setDaysCount(yearMonth.lengthOfMonth());
-        month.setWeeksCount(yearMonth.lengthOfMonth() / 7);
-        Set<Day> days = new TreeSet<>();
-        for (int i = 1; i <= month.getDaysCount(); i++) {
-            days.add(new Day(yearMonth.atDay(i), "Понеділок", i));
-        }
-        month.setDays(days);
-        return month;
+        return generateMonth(date);
     }
 
     @Override
     public Set<Day> getMonthDays(Month month) {
         return null;
+    }
+
+    private Month generateMonth(LocalDate localDate) {
+        YearMonth yearMonth = YearMonth.of(localDate.getYear(), localDate.getMonth());
+        Month month = new Month();
+        month.setDaysCount(yearMonth.lengthOfMonth());
+        month.setWeeksCount(yearMonth.lengthOfMonth() / 7);
+        fillMonthWithDays(month, yearMonth);
+        return month;
+    }
+
+    private void fillMonthWithDays(Month month, YearMonth yearMonth) {
+        Set<Day> days = new TreeSet<>();
+        for (int i = 1; i <= month.getDaysCount(); i++) {
+            days.add(new Day(yearMonth.atDay(i), "Понеділок", i));
+        }
+        month.setDays(days);
     }
 }
