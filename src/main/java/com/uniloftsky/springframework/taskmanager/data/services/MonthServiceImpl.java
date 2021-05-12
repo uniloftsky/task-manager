@@ -29,9 +29,10 @@ public class MonthServiceImpl implements MonthService {
 
     private Month generateMonth(LocalDate localDate) {
         YearMonth yearMonth = YearMonth.of(localDate.getYear(), localDate.getMonth());
-        Month month = new Month();
-        month.setDaysCount(yearMonth.lengthOfMonth());
-        month.setWeeksCount(yearMonth.lengthOfMonth() / 7);
+        Month month = Month.builder()
+                .daysCount(yearMonth.lengthOfMonth())
+                .weeksCount(yearMonth.lengthOfMonth() / 7)
+                .build();
         fillMonthWithDays(month, yearMonth);
         return month;
     }

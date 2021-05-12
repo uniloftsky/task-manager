@@ -1,9 +1,6 @@
 package com.uniloftsky.springframework.taskmanager.model.unpersisten;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -12,8 +9,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Month {
 
+    private Set<Day> lastMonthDays;
+    private Set<Day> nextMonthDays;
     private int daysCount;
     private int weeksCount;
     private Set<Day> days;
