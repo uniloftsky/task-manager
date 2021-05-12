@@ -1,5 +1,6 @@
 package com.uniloftsky.springframework.taskmanager.model.unpersisten;
 
+import com.uniloftsky.springframework.taskmanager.model.unpersisten.enums.DaysOfWeek;
 import lombok.*;
 
 import java.time.LocalDate;

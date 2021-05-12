@@ -10,9 +10,9 @@ body {
 
 .calendar {
     display: flex;
-    flex-wrap:  wrap;
+    flex-wrap: wrap;
 }
 
 .day {
-    width: 150px;
+    width: 16vw;
 }

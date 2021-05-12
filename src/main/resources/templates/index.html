@@ -7,9 +7,9 @@
 </head>
 <body>
 
+<h1 th:text="${month.name}"></h1>
+
 <div>
-    <p th:text="${month.daysCount}"></p>
-    <p th:text="${month.weeksCount}"></p>
     <ul class="calendar">
         <li class="day" th:each="day: ${month.days}">
             <p th:text="${day.dayOfWeek.label}"></p>
@@ -18,6 +18,8 @@
         </li>
     </ul>
 </div>
+<a th:href="@{/}"><</a>
+<a th:href="@{/}">></a>
 
 </body>
 </html>

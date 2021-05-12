@@ -1,4 +1,4 @@
-package com.uniloftsky.springframework.taskmanager.model.unpersisten;
+package com.uniloftsky.springframework.taskmanager.model.unpersisten.enums;
 
 public enum DaysOfWeek {
 
@@ -10,7 +10,7 @@ public enum DaysOfWeek {
     SATURDAY("Суббота"),
     SUNDAY("Воскресенье");
 
-    public final String label;
+    private final String label;
 
     DaysOfWeek(String label) {
         this.label = label;

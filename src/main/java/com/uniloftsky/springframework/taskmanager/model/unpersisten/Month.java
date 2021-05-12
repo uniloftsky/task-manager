@@ -18,5 +18,6 @@ public class Month {
     private int weeksCount;
     private Set<Day> days;
     private LocalDate monthDate;
+    private String name;
 
 }
