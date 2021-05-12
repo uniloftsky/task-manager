@@ -12,7 +12,10 @@ import java.util.Calendar;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class MonthGenerator {
+public final class MonthGenerator {
+
+    private MonthGenerator() {
+    }
 
     public static Month generateMonth(LocalDate localDate) {
         YearMonth yearMonth = YearMonth.of(localDate.getYear(), localDate.getMonth());
@@ -20,6 +23,8 @@ public class MonthGenerator {
                 .daysCount(yearMonth.lengthOfMonth())
                 .weeksCount(yearMonth.lengthOfMonth() / 7)
                 .name(getMonthName(yearMonth))
+                .nextMonth(localDate.plusMonths(1))
+                .prevMonth(localDate.minusMonths(1))
                 .build();
         fillMonthWithDays(month, yearMonth);
         return month;

@@ -18,8 +18,8 @@
         </li>
     </ul>
 </div>
-<a th:href="@{/}"><</a>
-<a th:href="@{/}">></a>
+<a th:href="@{/(date=${month.prevMonth})}"><</a>
+<a th:href="@{/(date=${month.nextMonth})}">></a>
 
 </body>
 </html>
