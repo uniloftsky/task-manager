@@ -14,8 +14,8 @@ body {
 }
 
 .calendar {
-    max-width: 490px;
-    min-height: 420px;
+    max-width: 840px;
+    min-height: 700px;
 }
 
 .calendar-inner {
@@ -25,8 +25,9 @@ body {
 }
 
 .calendar-inner li {
-    min-width: 70px;
-    min-height: 60px;
+    padding: .5em;
+    min-width: 120px;
+    min-height: 100px;
     border: 1px solid black;
 }
 
@@ -49,4 +50,14 @@ main .ui.buttons {
 
 .day-index {
     font-size: 1.125rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin-bottom: .5em;
+    width: 100%;
 }

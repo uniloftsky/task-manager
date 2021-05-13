@@ -4,7 +4,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -13,8 +12,6 @@ import java.util.Set;
 @Builder
 public class Month {
 
-    private Set<Day> lastMonthDays;
-    private Set<Day> nextMonthDays;
     private int daysCount;
     private List<Day> days;
     private LocalDate monthDate;

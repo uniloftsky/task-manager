@@ -63,7 +63,7 @@ public final class DaysGenerator {
         }
     }
 
-    private static DaysOfWeek handleDayOfWeek(LocalDate localDate) {
+    public static DaysOfWeek handleDayOfWeek(LocalDate localDate) {
         calendar.setTime(Date.valueOf(localDate));
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         switch (dayOfWeek) {
@@ -84,7 +84,7 @@ public final class DaysGenerator {
         }
     }
 
-    static Day buildDay(YearMonth yearMonth, int index) {
+    public static Day buildDay(YearMonth yearMonth, int index) {
         return Day.builder()
                 .dayDate(yearMonth.atDay(index))
                 .dayIndex(index)

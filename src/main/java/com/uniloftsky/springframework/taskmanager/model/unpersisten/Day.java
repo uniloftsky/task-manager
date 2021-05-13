@@ -18,10 +18,6 @@ public class Day implements Comparable<Day> {
 
     @Override
     public int compareTo(Day day) {
-        if (dayIndex > day.dayIndex) {
-            return 1;
-        } else {
-            return -1;
-        }
+        return dayIndex > day.dayIndex ? 1 : -1;
     }
 }

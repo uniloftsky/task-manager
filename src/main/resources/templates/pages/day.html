@@ -6,10 +6,45 @@
     <th:block th:insert="~{fragments/header-fragment}"></th:block>
 </head>
 <body>
-<h1>Day <span th:text="${#request.getParameter('date')}"></span></h1>
-<ul>
-    <li th:each="task : ${tasks}" th:text="${task.taskDescription + ' ' + task.taskDate + ' ' + task.taskTime}"></li>
-</ul>
+<h1><span th:text="${dayOfWeek.label + ' - ' + #request.getParameter('date')}"></span></h1>
+<div th:if="${tasks.size() > 0}" style="width: 600px;">
+    <p style="text-align: center">Задачи на этот день:</p>
+    <table class="ui celled table" style="width: 100%;">
+        <thead>
+        <tr>
+            <th>Время</th>
+            <th>Описание</th>
+            <th>Выполнено</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.taskTime}">James</td>
+            <td th:text="${task.taskDescription}">24</td>
+            <td>Не выполнено</td>
+            <td>Галочка</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p th:if="${tasks.size() == 0}">Задачи на этот день отсутствуют</p>
+<p>Добавить новую задачу:</p>
+<form method="post" th:object="${task}" th:action="@{/postTask}">
+    <div>
+        <label>
+            Название задачи
+        </label>
+        <input type="text" th:field="*{taskDescription}" required>
+    </div>
+    <div>
+        <label>
+            Время
+        </label><input type="time" th:field="*{taskTime}" required>
+    </div>
+    <input type="hidden" th:value="${#request.getParameter('date')}" name="dayDate">
+    <input type="submit" value="Добавить">
+</form>
 <th:block th:insert="~{fragments/footer-fragment}"></th:block>
 </body>
 </html>

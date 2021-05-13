@@ -15,6 +15,8 @@ public interface TaskService {
 
     Task save(Task task);
 
+    Task save(Task task, String date);
+
     void delete(Task task);
 
 }
