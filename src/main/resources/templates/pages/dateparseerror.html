@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Error page</title>
+    <th:block th:insert="~{fragments/header-fragment}"></th:block>
 </head>
 <body>
 <h1>Ошибка ввода</h1>
 <p>Введена неверная дата</p>
 <a th:href="@{/}">Вернуться</a>
+<th:block th:insert="~{fragments/footer-fragment}"></th:block>
 </body>
 </html>

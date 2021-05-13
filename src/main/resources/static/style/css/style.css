@@ -6,10 +6,16 @@
 
 body {
     font-size: 1rem;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .calendar {
-    max-width: 350px;
+    max-width: 490px;
+    min-height: 420px;
 }
 
 .calendar-inner {
@@ -19,5 +25,28 @@ body {
 }
 
 .calendar-inner li {
-    min-width: 50px;
+    min-width: 70px;
+    min-height: 60px;
+    border: 1px solid black;
+}
+
+.calendar-inner:last-child li {
+    cursor: pointer;
+    transition: .2s;
+}
+
+.calendar-inner:last-child li:hover {
+    background-color: lightgray;
+}
+
+main .ui.buttons {
+    width: 100%;
+}
+
+.weekend {
+    color: red;
+}
+
+.day-index {
+    font-size: 1.125rem;
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task manager</title>
+    <th:block th:insert="~{fragments/header-fragment}"></th:block>
+</head>
+<body>
+<header>
+    <h1 th:text="${month.name + ' ' + month.monthDate.year}" style="margin-bottom: 1em;"></h1>
+</header>
+<main>
+    <div class="calendar">
+        <ul class="calendar-inner">
+            <li><b>пн</b></li>
+            <li><b>вт</b></li>
+            <li><b>ср</b></li>
+            <li><b>чт</b></li>
+            <li><b>пт</b></li>
+            <li><b>сб</b></li>
+            <li><b>вс</b></li>
+        </ul>
+        <ul class="calendar-inner">
+            <li th:each="day : ${month.days}" th:attr="onclick=|window.location='/day?date=${day.dayDate}'|">
+                <div>
+                    <p th:class="${day.dayOfWeek.name() == 'SUNDAY' || day.dayOfWeek.name() == 'SATURDAY' ? 'weekend day-index' : 'day-index'}"
+                       th:text="${day.dayIndex}"></p>
+                    <p th:if="${tasks.findAllByTaskDate(day.dayDate).size() > 0}"
+                       th:text="${tasks.findAllByTaskDate(day.dayDate).size()}">6</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="ui buttons">
+        <button class="ui labeled icon button" th:attr="onclick=|window.location='@{/(date=${month.prevMonth})}'|">
+            <i class="left chevron icon"></i>
+            Назад
+        </button>
+        <button class="ui right labeled icon button"
+                th:attr="onclick=|window.location='@{/(date=${month.nextMonth})}'|">
+            Вперед
+            <i class="right chevron icon"></i>
+        </button>
+    </div>
+    <!--    <a th:href="@{/(date=${month.prevMonth})}"><</a>
+        <a th:href="@{/(date=${month.nextMonth})}">></a>-->
+</main>
+<th:block th:insert="~{fragments/footer-fragment}"></th:block>
+</body>
+</html>

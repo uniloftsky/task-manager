@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>День - <span th:text="${#request.getParameter('date')}"></span></title>
+    <th:block th:insert="~{fragments/header-fragment}"></th:block>
+</head>
+<body>
+<h1>Day <span th:text="${#request.getParameter('date')}"></span></h1>
+<ul>
+    <li th:each="task : ${tasks}" th:text="${task.taskDescription + ' ' + task.taskDate + ' ' + task.taskTime}"></li>
+</ul>
+<th:block th:insert="~{fragments/footer-fragment}"></th:block>
+</body>
+</html>

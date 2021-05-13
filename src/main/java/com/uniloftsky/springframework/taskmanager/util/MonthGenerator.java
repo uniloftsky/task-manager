@@ -47,6 +47,7 @@ public final class MonthGenerator {
                 .nextMonth(localDate.plusMonths(1))
                 .prevMonth(localDate.minusMonths(1))
                 .days(fillMonthWithDays(yearMonth))
+                .monthDate(localDate)
                 .build();
     }
 
