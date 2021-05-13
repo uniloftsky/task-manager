@@ -2,6 +2,7 @@ package com.uniloftsky.springframework.taskmanager.util;
 
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.Day;
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.Month;
+import com.uniloftsky.springframework.taskmanager.model.unpersisten.enums.DaysOfWeek;
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.enums.MonthName;
 
 import java.time.LocalDate;
@@ -24,8 +25,8 @@ public final class MonthGenerator {
         for (int i = 1; i <= yearMonth.lengthOfMonth(); i++) {
             days.add(DaysGenerator.buildDay(yearMonth, i));
         }
-        days.addAll(0, DaysGenerator.getPrevMonthDays(days));
-        days.addAll(days.size(), DaysGenerator.getNextMonthDays(days));
+        days.addAll(0, DaysGenerator.getEndingMonthDays(days, DaysOfWeek.MONDAY));
+        days.addAll(days.size(), DaysGenerator.getEndingMonthDays(days, DaysOfWeek.SUNDAY));
         return days;
     }
 
