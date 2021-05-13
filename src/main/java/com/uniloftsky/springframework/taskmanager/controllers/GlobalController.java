@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.format.DateTimeParseException;
 
+//Контроллер для обработки исключений и вывода глобальных ModelAttribute
 @ControllerAdvice
 public class GlobalController {
 

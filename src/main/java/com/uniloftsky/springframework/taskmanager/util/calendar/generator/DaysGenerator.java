@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+//Генератор дней для месяца
 public final class DaysGenerator {
 
     private static final List<Day> tempDaysList = new ArrayList<>();
@@ -23,46 +24,64 @@ public final class DaysGenerator {
     private DaysGenerator() {
     }
 
+    //Выбор заполнения хвоста предыдущего или следующего месяца в зависимоти от условия
     static List<Day> getEndingMonthDays(List<Day> days, DaysOfWeek daysOfWeek) {
         tempDaysList.clear();
         Day endingMonthDay = daysOfWeek.equals(DaysOfWeek.MONDAY) ? days.get(0) : days.get(days.size() - 1);
+        calendar.setTime(Date.valueOf(endingMonthDay.getDayDate()));
         if (!endingMonthDay.getDayOfWeek().equals(daysOfWeek)) {
-            completeDaysList(daysOfWeek, days);
+            handleDaysListForTailMonth(endingMonthDay, daysOfWeek);
         }
         return tempDaysList;
     }
 
-    private static void completeDaysList(DaysOfWeek dayOfWeek, List<Day> days) {
-        tempDaysList.clear();
-        Day endingDay = dayOfWeek.equals(DaysOfWeek.MONDAY) ? days.get(0) : days.get(days.size() - 1);
-        calendar.setTime(Date.valueOf(endingDay.getDayDate()));
-        int dayOfWeekIndex = calendar.get(Calendar.DAY_OF_WEEK);
-        if (dayOfWeek.equals(DaysOfWeek.MONDAY)) {
-            handleListForPrevMonthDays(dayOfWeekIndex, endingDay);
+    //Заполнение буферного списка днями с хвоста предыдущего или следующего месяца в зависимости от условия
+    private static void handleDaysListForTailMonth(Day endingDay, DaysOfWeek daysOfWeek) {
+        int monthDays;
+        LocalDate localDate = endingDay.getDayDate();
+        YearMonth ym;
+        ym = calculateYM(localDate, daysOfWeek);
+        monthDays = calculateMonthDays(endingDay, daysOfWeek);
+        fillMonthTail(daysOfWeek, ym, monthDays);
+    }
+
+    //Запуск цикла по заполнению буферного списка
+    private static void fillMonthTail(DaysOfWeek daysOfWeek, YearMonth ym, int monthDays) {
+        if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
+            for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - monthDays; i--) {
+                tempDaysList.add(buildDay(ym, i));
+            }
+            tempDaysList.sort(Day::compareTo);
         } else {
-            handleListForNextMonthDays(endingDay);
+            for (int i = 1; i <= monthDays; i++) {
+                tempDaysList.add(buildDay(ym, i));
+            }
         }
     }
 
-    private static void handleListForPrevMonthDays(int dayOfWeek, Day endingDay) {
-        int prevMonthDays = dayOfWeek == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
-        LocalDate prevLocalDate = endingDay.getDayDate().minusMonths(1);
-        YearMonth ym = YearMonth.of(prevLocalDate.getYear(), prevLocalDate.getMonth());
-        for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - prevMonthDays; i--) {
-            tempDaysList.add(buildDay(ym, i));
-        }
-        tempDaysList.sort(Day::compareTo);
-    }
-
-    private static void handleListForNextMonthDays(Day endingDay) {
-        int nextMonthDays = 8 - calendar.get(Calendar.DAY_OF_WEEK);
-        LocalDate nextLocalDate = endingDay.getDayDate().plusMonths(1);
-        YearMonth ym = YearMonth.of(nextLocalDate.getYear(), nextLocalDate.getMonth());
-        for (int i = 1; i <= nextMonthDays; i++) {
-            tempDaysList.add(buildDay(ym, i));
+    //Вычисление значения переменной YearMonth в зависимости от условия
+    private static YearMonth calculateYM(LocalDate localDate, DaysOfWeek daysOfWeek) {
+        if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
+            tempDaysList.clear();
+            localDate = localDate.minusMonths(1);
+            return YearMonth.of(localDate.getYear(), localDate.getMonth());
+        } else {
+            tempDaysList.clear();
+            localDate = localDate.plusMonths(1);
+            return YearMonth.of(localDate.getYear(), localDate.getMonth());
         }
     }
 
+    //Вычисление количества дней хвоста в зависимости от условия
+    private static int calculateMonthDays(Day endingDay, DaysOfWeek daysOfWeek) {
+        if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
+            return endingDay.getDayOfWeek().ordinal() + 1 == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        } else {
+            return 8 - calendar.get(Calendar.DAY_OF_WEEK);
+        }
+    }
+
+    //Обработка для указывания названия дня недели
     public static DaysOfWeek handleDayOfWeek(LocalDate localDate) {
         calendar.setTime(Date.valueOf(localDate));
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
@@ -84,6 +103,7 @@ public final class DaysGenerator {
         }
     }
 
+    //Конструктор дня
     static Day buildDay(YearMonth yearMonth, int index) {
         return Day.builder()
                 .dayDate(yearMonth.atDay(index))
@@ -92,6 +112,7 @@ public final class DaysGenerator {
                 .build();
     }
 
+    //Конструктор дня с использованием даты
     public static Day buildDay(LocalDate localDate) {
         calendar.setTime(Date.valueOf(localDate));
         return Day.builder()

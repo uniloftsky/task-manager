@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 
+//Контролер, отвечающий за обработку запросов на главную страницу и страницу отдельного дня
 @Controller
 public class IndexController {
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.time.LocalDate;
 
-
+//Контролер, отвечающий за добавление новой задачи
 @Controller
 public class TaskController {
 

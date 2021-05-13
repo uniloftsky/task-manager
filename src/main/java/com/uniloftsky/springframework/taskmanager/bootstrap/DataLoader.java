@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;
 
-
+//Класс, отвечающий за загрузку заготовленных данных в базу
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -22,6 +22,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         Set<Task> tasks = new HashSet<>();
         tasks.add(new Task("Some task", LocalTime.of(2, 30), LocalDate.of(2021, 5, 14)));
         tasks.add(new Task("Some task 2", LocalTime.of(18, 0), LocalDate.of(2021, 5, 15)));
