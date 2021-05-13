@@ -40,6 +40,7 @@ public final class MonthGenerator {
         return name;
     }
 
+
     private static Month buildMonth(YearMonth yearMonth, LocalDate localDate) {
         return Month.builder()
                 .daysCount(yearMonth.lengthOfMonth())

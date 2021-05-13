@@ -84,7 +84,7 @@ public final class DaysGenerator {
         }
     }
 
-    public static Day buildDay(YearMonth yearMonth, int index) {
+    static Day buildDay(YearMonth yearMonth, int index) {
         return Day.builder()
                 .dayDate(yearMonth.atDay(index))
                 .dayIndex(index)
