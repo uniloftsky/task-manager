@@ -34,8 +34,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Set<Task> findAllByTaskDate(LocalDate localDate) {
-        Set<Task> tasks = new TreeSet<>(Comparator.comparing(Task::getTime));
-        taskRepository.findAllByDate(localDate).iterator().forEachRemaining(tasks::add);
+        Set<Task> tasks = new TreeSet<>(Comparator.comparing(Task::getTaskTime));
+        taskRepository.findAllByTaskDate(localDate).iterator().forEachRemaining(tasks::add);
         return tasks;
     }
 
@@ -46,7 +46,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task save(Task task, String date) {
-        task.setDate(LocalDate.parse(date));
+        task.setTaskDate(LocalDate.parse(date));
         return taskRepository.save(task);
     }
 

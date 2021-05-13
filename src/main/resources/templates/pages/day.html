@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}">
-            <td th:text="${task.time}">James</td>
+            <td th:text="${task.taskTime}">James</td>
             <td th:text="${task.description}">24</td>
         </tr>
         </tbody>
@@ -44,10 +44,10 @@
         <label>
             Время
         </label>
-        <input type="time" th:field="*{time}" class="time-input">
-        <div th:if="${#fields.hasErrors('time')}" class="ui pointing red basic label" style="width: 100%">
+        <input type="time" th:field="*{taskTime}" class="time-input">
+        <div th:if="${#fields.hasErrors('taskTime')}" class="ui pointing red basic label" style="width: 100%">
             <ul style="padding-left: 1em;">
-                <li th:each="err : ${#fields.errors('time')}" th:text="${err}"></li>
+                <li th:each="err : ${#fields.errors('taskTime')}" th:text="${err}"></li>
             </ul>
         </div>
     </div>

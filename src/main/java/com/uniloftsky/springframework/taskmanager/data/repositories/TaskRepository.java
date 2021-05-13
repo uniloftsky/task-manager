@@ -10,6 +10,6 @@ import java.util.Set;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, Long> {
 
-    Set<Task> findAllByDate(LocalDate localDate);
+    Set<Task> findAllByTaskDate(LocalDate localDate);
 
 }

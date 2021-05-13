@@ -32,7 +32,7 @@ public class TaskController {
             return "pages/day";
         }
         taskService.save(task, date);
-        return "redirect:/day?date=" + task.getDate();
+        return "redirect:/day?date=" + task.getTaskDate();
     }
 
 }

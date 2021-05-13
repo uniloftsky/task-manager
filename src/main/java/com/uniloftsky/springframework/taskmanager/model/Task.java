@@ -26,9 +26,9 @@ public class Task extends BaseEntity {
 
     @NotNull(message = "Поле времени не может быть пустым!")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime time;
+    private LocalTime taskTime;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate date;
+    private LocalDate taskDate;
 
 }

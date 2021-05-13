@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:data.db
+    username:
+    password:
+  jpa:
+    database-platform: com.uniloftsky.springframework.taskmanager.config.sqlite.SQLiteDialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
