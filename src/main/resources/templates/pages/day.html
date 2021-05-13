@@ -14,16 +14,12 @@
         <tr>
             <th>Время</th>
             <th>Описание</th>
-            <th>Выполнено</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}">
             <td th:text="${task.time}">James</td>
             <td th:text="${task.description}">24</td>
-            <td>Не выполнено</td>
-            <td>Галочка</td>
         </tr>
         </tbody>
     </table>

@@ -37,7 +37,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Set<Task> findAllByTaskDate(LocalDate localDate) {
         Set<Task> tasks = new HashSet<>();
-        taskRepository.findAllByTaskDate(localDate).iterator().forEachRemaining(tasks::add);
+        taskRepository.findAllByDate(localDate).iterator().forEachRemaining(tasks::add);
         return tasks;
     }
 

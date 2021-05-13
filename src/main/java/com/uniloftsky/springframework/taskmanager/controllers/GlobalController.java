@@ -16,7 +16,7 @@ public class GlobalController {
     public String handleInvalidDate(Exception exception, Model model) {
         System.out.println("dsadsa");
         model.addAttribute("error", exception);
-        return "dateparseerror";
+        return "pages/dateparseerror";
     }
 
 }
