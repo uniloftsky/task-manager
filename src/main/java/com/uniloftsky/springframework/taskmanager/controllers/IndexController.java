@@ -3,6 +3,7 @@ package com.uniloftsky.springframework.taskmanager.controllers;
 import com.uniloftsky.springframework.taskmanager.data.services.MonthService;
 import com.uniloftsky.springframework.taskmanager.data.services.TaskService;
 import com.uniloftsky.springframework.taskmanager.model.Task;
+import com.uniloftsky.springframework.taskmanager.util.calendar.generator.DaysGenerator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class IndexController {
     @GetMapping(value = "/day", params = "date")
     public String getSpecifiedDayPage(@RequestParam("date") String date, Model model) {
         model.addAttribute("tasks", taskService.findAllByTaskDate(LocalDate.parse(date)));
-        model.addAttribute("dayOfWeek", monthService.getDayOfWeekByDate(LocalDate.parse(date)));
+        model.addAttribute("dayOfWeek", DaysGenerator.handleDayOfWeek(LocalDate.parse(date)));
         model.addAttribute("task", new Task());
         return "pages/day";
     }

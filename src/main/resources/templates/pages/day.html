@@ -20,8 +20,8 @@
         </thead>
         <tbody>
         <tr th:each="task : ${tasks}">
-            <td th:text="${task.taskTime}">James</td>
-            <td th:text="${task.taskDescription}">24</td>
+            <td th:text="${task.time}">James</td>
+            <td th:text="${task.description}">24</td>
             <td>Не выполнено</td>
             <td>Галочка</td>
         </tr>
@@ -36,13 +36,13 @@
             Название задачи
         </label>
         <div class="ui input">
-            <input type="text" placeholder="Название задачи" th:field="*{taskDescription}">
+            <input type="text" placeholder="Название задачи" th:field="*{description}">
         </div>
     </div>
     <div style="margin-bottom: 1em">
         <label>
             Время
-        </label><input type="time" th:field="*{taskTime}" required>
+        </label><input type="time" th:field="*{time}" required>
     </div>
     <input type="hidden" th:value="${#request.getParameter('date')}" name="dayDate">
     <button type="submit" class="positive ui button">Добавить</button>

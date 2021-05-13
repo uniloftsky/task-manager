@@ -20,7 +20,7 @@ public class TaskController {
     @PostMapping("/postTask")
     public String createNewTask(@ModelAttribute Task task, @RequestParam(name = "dayDate") String date) {
         taskService.save(task, date);
-        return "redirect:/day?date=" + task.getTaskDate();
+        return "redirect:/day?date=" + task.getDate();
     }
 
 }

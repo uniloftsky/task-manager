@@ -17,12 +17,12 @@ import java.time.LocalTime;
 @Entity
 public class Task extends BaseEntity {
 
-    private String taskDescription;
+    private String description;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime taskTime;
+    private LocalTime time;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate taskDate;
+    private LocalDate date;
 
 }

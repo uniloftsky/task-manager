@@ -48,7 +48,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task save(Task task, String date) {
-        task.setTaskDate(LocalDate.parse(date));
+        task.setDate(LocalDate.parse(date));
         return taskRepository.save(task);
     }
 

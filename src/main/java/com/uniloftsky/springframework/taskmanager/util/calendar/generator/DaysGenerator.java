@@ -1,4 +1,4 @@
-package com.uniloftsky.springframework.taskmanager.util;
+package com.uniloftsky.springframework.taskmanager.util.calendar.generator;
 
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.Day;
 import com.uniloftsky.springframework.taskmanager.model.unpersisten.enums.DaysOfWeek;
