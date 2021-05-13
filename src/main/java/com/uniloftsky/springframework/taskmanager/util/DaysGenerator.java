@@ -38,20 +38,28 @@ public final class DaysGenerator {
         calendar.setTime(Date.valueOf(endingDay.getDayDate()));
         int dayOfWeekIndex = calendar.get(Calendar.DAY_OF_WEEK);
         if (dayOfWeek.equals(DaysOfWeek.MONDAY)) {
-            int prevMonthDays = dayOfWeekIndex == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
-            LocalDate prevLocalDate = endingDay.getDayDate().minusMonths(1);
-            YearMonth ym = YearMonth.of(prevLocalDate.getYear(), prevLocalDate.getMonth());
-            for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - prevMonthDays; i--) {
-                tempDaysList.add(buildDay(ym, i));
-            }
-            tempDaysList.sort(Day::compareTo);
+            handleListForPrevMonthDays(dayOfWeekIndex, endingDay);
         } else {
-            int nextMonthDays = 8 - calendar.get(Calendar.DAY_OF_WEEK);
-            LocalDate nextLocalDate = endingDay.getDayDate().plusMonths(1);
-            YearMonth ym = YearMonth.of(nextLocalDate.getYear(), nextLocalDate.getMonth());
-            for (int i = 1; i <= nextMonthDays; i++) {
-                tempDaysList.add(buildDay(ym, i));
-            }
+            handleListForNextMonthDays(endingDay);
+        }
+    }
+
+    private static void handleListForPrevMonthDays(int dayOfWeek, Day endingDay) {
+        int prevMonthDays = dayOfWeek == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
+        LocalDate prevLocalDate = endingDay.getDayDate().minusMonths(1);
+        YearMonth ym = YearMonth.of(prevLocalDate.getYear(), prevLocalDate.getMonth());
+        for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - prevMonthDays; i--) {
+            tempDaysList.add(buildDay(ym, i));
+        }
+        tempDaysList.sort(Day::compareTo);
+    }
+
+    private static void handleListForNextMonthDays(Day endingDay) {
+        int nextMonthDays = 8 - calendar.get(Calendar.DAY_OF_WEEK);
+        LocalDate nextLocalDate = endingDay.getDayDate().plusMonths(1);
+        YearMonth ym = YearMonth.of(nextLocalDate.getYear(), nextLocalDate.getMonth());
+        for (int i = 1; i <= nextMonthDays; i++) {
+            tempDaysList.add(buildDay(ym, i));
         }
     }
 
