@@ -14,7 +14,6 @@ public class GlobalController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(DateTimeParseException.class)
     public String handleInvalidDate(Exception exception, Model model) {
-        System.out.println("dsadsa");
         model.addAttribute("error", exception);
         return "pages/dateparseerror";
     }
