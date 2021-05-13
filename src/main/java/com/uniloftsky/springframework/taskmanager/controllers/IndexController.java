@@ -44,7 +44,7 @@ public class IndexController {
     @GetMapping(value = "/day", params = "date")
     public String getSpecifiedDayPage(@RequestParam("date") String date, Model model) {
         model.addAttribute("tasks", taskService.findAllByTaskDate(LocalDate.parse(date)));
-        model.addAttribute("dayOfWeek", DaysGenerator.handleDayOfWeek(LocalDate.parse(date)));
+        model.addAttribute("day", DaysGenerator.buildDay(LocalDate.parse(date)));
         model.addAttribute("task", new Task());
         return "pages/day";
     }

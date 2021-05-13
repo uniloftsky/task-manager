@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>День - <span th:text="${#request.getParameter('date')}"></span></title>
+    <title th:text="${day.dayOfWeek.label + ' ' + day.dayDate}"></title>
     <th:block th:insert="~{fragments/header-fragment}"></th:block>
 </head>
 <body>
-<h1><span th:text="${dayOfWeek.label + ' - ' + #request.getParameter('date')}"></span></h1>
+<h1><span th:text="${day.dayOfWeek.label + ' - ' + day.dayDate}"></span></h1>
 <div th:if="${tasks.size() > 0}" style="width: 600px;">
     <p style="text-align: center">Задачи на этот день:</p>
     <table class="ui celled table" style="width: 100%;">
@@ -34,16 +34,27 @@
         <div class="ui input">
             <input type="text" placeholder="Название задачи" th:field="*{description}">
         </div>
+        <div th:if="${#fields.hasErrors('description')}" class="ui pointing red basic label" style="width: 100%;">
+            <ul style="padding-left: 1em;">
+                <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+            </ul>
+        </div>
     </div>
     <div style="margin-bottom: 1em">
         <label>
             Время
-        </label><input type="time" th:field="*{time}" required>
+        </label>
+        <input type="time" th:field="*{time}" class="time-input">
+        <div th:if="${#fields.hasErrors('time')}" class="ui pointing red basic label" style="width: 100%">
+            <ul style="padding-left: 1em;">
+                <li th:each="err : ${#fields.errors('time')}" th:text="${err}"></li>
+            </ul>
+        </div>
     </div>
-    <input type="hidden" th:value="${#request.getParameter('date')}" name="dayDate">
+    <input type="hidden" name="dayDate" th:value="${day.dayDate}">
     <button type="submit" class="positive ui button">Добавить</button>
 </form>
-<a th:href="@{/(date=${#request.getParameter('date')})}">Назад</a>
+<a th:href="@{/(date=${day.dayDate})}">Назад</a>
 <th:block th:insert="~{fragments/footer-fragment}"></th:block>
 </body>
 </html>

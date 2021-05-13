@@ -11,6 +11,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Roboto', sans-serif;
 }
 
 .calendar {
@@ -60,4 +61,15 @@ form {
 
 form input {
     width: 100%;
+}
+
+.time-input {
+    background: #fff;
+    box-shadow: none;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    text-align: left;
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
 }

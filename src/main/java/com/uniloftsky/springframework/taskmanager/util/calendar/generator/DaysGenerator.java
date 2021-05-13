@@ -92,4 +92,13 @@ public final class DaysGenerator {
                 .build();
     }
 
+    public static Day buildDay(LocalDate localDate) {
+        calendar.setTime(Date.valueOf(localDate));
+        return Day.builder()
+                .dayDate(localDate)
+                .dayIndex(calendar.get(Calendar.DAY_OF_MONTH))
+                .dayOfWeek(handleDayOfWeek(localDate))
+                .build();
+    }
+
 }

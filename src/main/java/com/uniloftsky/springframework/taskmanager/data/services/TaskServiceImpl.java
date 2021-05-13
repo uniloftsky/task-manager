@@ -5,9 +5,7 @@ import com.uniloftsky.springframework.taskmanager.model.Task;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -36,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Set<Task> findAllByTaskDate(LocalDate localDate) {
-        Set<Task> tasks = new HashSet<>();
+        Set<Task> tasks = new TreeSet<>(Comparator.comparing(Task::getTime));
         taskRepository.findAllByDate(localDate).iterator().forEachRemaining(tasks::add);
         return tasks;
     }

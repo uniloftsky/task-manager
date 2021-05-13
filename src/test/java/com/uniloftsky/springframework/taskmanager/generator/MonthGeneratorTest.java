@@ -17,8 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MonthGeneratorTest {
 
-    //Mock data
-    private LocalDate localDate;
+    private Month month;
+    private YearMonth ym;
 
     private int prevMonthDays;
     private int nextMonthDays;
@@ -28,21 +28,29 @@ public class MonthGeneratorTest {
 
     @BeforeEach
     void setUp() {
-        localDate = LocalDate.of(2021, 5, 20);
+        //Mock data
+        LocalDate localDate = LocalDate.of(2021, 5, 20);
         prevMonthDays = 5;
         nextMonthDays = 6;
         fillPrevMonthDays();
         fillNextMonthDays();
+        month = MonthGenerator.generateMonth(localDate);
+        ym = YearMonth.of(localDate.getYear(), localDate.getMonth());
     }
 
     @Test
     void testMonthGenerator() {
-        YearMonth ym = YearMonth.of(localDate.getYear(), localDate.getMonth());
-        int daysInMonth = ym.lengthOfMonth();
-        int allMonthDays = daysInMonth + prevMonthDays + nextMonthDays;
-        Month month = MonthGenerator.generateMonth(localDate);
-        assertEquals(allMonthDays, month.getDays().size());
+        int daysInMonth = ym.lengthOfMonth() + prevMonthDays + nextMonthDays;
+        assertEquals(daysInMonth, month.getDays().size());
+    }
+
+    @Test
+    void testPrevMonthDaysGenerator() {
         assertTrue(month.getDays().subList(0, 5).containsAll(prevMonthDaysList));
+    }
+
+    @Test
+    void testNextMonthDaysGenerator() {
         assertTrue(month.getDays().subList(month.getDaysCount(), month.getDays().size()).containsAll(nextMonthDaysList));
     }
 
