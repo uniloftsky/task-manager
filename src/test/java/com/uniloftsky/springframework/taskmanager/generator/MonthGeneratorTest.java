@@ -15,6 +15,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/*
+ * Тестирование генератора заключается в том, что сгенерированный месяц должен иметь свои количества дней + дни хвостов.
+ * Заготовленные дни хвостов реального месяца должны совпадать со сгенерированными.
+ * Для тестирования были добавлены Mock-данные, а конкретно хвост дней с предыдущего месяца и хвост дней со следующего,
+ * которые сравниваются с хвостами, которые генерирует класс DaysGenerator.
+ */
 public class MonthGeneratorTest {
 
     private Month month;

@@ -15,11 +15,13 @@ public final class MonthGenerator {
     private MonthGenerator() {
     }
 
+    //Генерация всего месяца по дате
     public static Month generateMonth(LocalDate localDate) {
         YearMonth yearMonth = YearMonth.of(localDate.getYear(), localDate.getMonth());
         return buildMonth(yearMonth, localDate);
     }
 
+    //Заполнение месяца днями, включая хвосты следующего и предыдущего месяца
     private static List<Day> fillMonthWithDays(YearMonth yearMonth) {
         List<Day> days = new ArrayList<>();
         for (int i = 1; i <= yearMonth.lengthOfMonth(); i++) {
@@ -30,6 +32,7 @@ public final class MonthGenerator {
         return days;
     }
 
+    //Настройка имени месяца
     private static String getMonthName(YearMonth yearMonth) {
         String name = "";
         for (MonthName monthName : MonthName.values()) {
@@ -41,6 +44,7 @@ public final class MonthGenerator {
     }
 
 
+    //Конструктор месяца
     private static Month buildMonth(YearMonth yearMonth, LocalDate localDate) {
         return Month.builder()
                 .daysCount(yearMonth.lengthOfMonth())
