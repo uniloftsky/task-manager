@@ -55,9 +55,9 @@ main .ui.buttons {
 form {
     display: flex;
     flex-direction: column;
+    min-width: 500px;
 }
 
 form input {
-    margin-bottom: .5em;
     width: 100%;
 }
