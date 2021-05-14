@@ -45,20 +45,6 @@ public final class DaysGenerator {
         fillMonthTail(daysOfWeek, ym, monthDays);
     }
 
-    //Запуск цикла по заполнению буферного списка
-    private static void fillMonthTail(DaysOfWeek daysOfWeek, YearMonth ym, int monthDays) {
-        if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
-            for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - monthDays; i--) {
-                tempDaysList.add(buildDay(ym, i));
-            }
-            tempDaysList.sort(Day::compareTo);
-        } else {
-            for (int i = 1; i <= monthDays; i++) {
-                tempDaysList.add(buildDay(ym, i));
-            }
-        }
-    }
-
     //Вычисление значения переменной YearMonth в зависимости от условия
     private static YearMonth calculateYM(LocalDate localDate, DaysOfWeek daysOfWeek) {
         if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
@@ -78,6 +64,20 @@ public final class DaysGenerator {
             return endingDay.getDayOfWeek().ordinal() + 1 == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
         } else {
             return 8 - calendar.get(Calendar.DAY_OF_WEEK);
+        }
+    }
+
+    //Запуск цикла по заполнению буферного списка
+    private static void fillMonthTail(DaysOfWeek daysOfWeek, YearMonth ym, int monthDays) {
+        if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
+            for (int i = ym.lengthOfMonth(); i > ym.lengthOfMonth() - monthDays; i--) {
+                tempDaysList.add(buildDay(ym, i));
+            }
+            tempDaysList.sort(Day::compareTo);
+        } else {
+            for (int i = 1; i <= monthDays; i++) {
+                tempDaysList.add(buildDay(ym, i));
+            }
         }
     }
 

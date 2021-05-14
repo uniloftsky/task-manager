@@ -29,6 +29,8 @@ public class DataLoader implements CommandLineRunner {
         tasks.add(new Task("Some task 3", LocalTime.of(15, 25), LocalDate.of(2021, 5, 17)));
         tasks.add(new Task("Some task 4", LocalTime.of(15, 25), LocalDate.of(2021, 5, 17)));
 
+        System.out.println(System.getProperty("user.dir"));
+
         taskRepository.saveAll(tasks);
     }
 }
