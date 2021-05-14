@@ -2,6 +2,7 @@ package com.uniloftsky.springframework.taskmanager.bootstrap;
 
 import com.uniloftsky.springframework.taskmanager.data.repositories.TaskRepository;
 import com.uniloftsky.springframework.taskmanager.model.Task;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 //Класс, отвечающий за загрузку заготовленных данных в базу
+@Slf4j
 @Component
 public class DataLoader implements CommandLineRunner {
 
@@ -29,7 +31,7 @@ public class DataLoader implements CommandLineRunner {
         tasks.add(new Task("Some task 3", LocalTime.of(15, 25), LocalDate.of(2021, 5, 17)));
         tasks.add(new Task("Some task 4", LocalTime.of(15, 25), LocalDate.of(2021, 5, 17)));
 
-        System.out.println(System.getProperty("user.dir"));
+        log.info("Database file created at: " + System.getProperty("user.dir") + "\\data.db");
 
         taskRepository.saveAll(tasks);
     }
