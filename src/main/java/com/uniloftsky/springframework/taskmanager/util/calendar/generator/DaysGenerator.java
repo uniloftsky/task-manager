@@ -28,7 +28,6 @@ public final class DaysGenerator {
     static List<Day> getEndingMonthDays(List<Day> days, DaysOfWeek daysOfWeek) {
         tempDaysList.clear();
         Day endingMonthDay = daysOfWeek.equals(DaysOfWeek.MONDAY) ? days.get(0) : days.get(days.size() - 1);
-        calendar.setTime(Date.valueOf(endingMonthDay.getDayDate()));
         if (!endingMonthDay.getDayOfWeek().equals(daysOfWeek)) {
             handleDaysListForTailMonth(endingMonthDay, daysOfWeek);
         }
@@ -37,11 +36,9 @@ public final class DaysGenerator {
 
     //Заполнение буферного списка днями с хвоста предыдущего или следующего месяца в зависимости от условия
     private static void handleDaysListForTailMonth(Day endingDay, DaysOfWeek daysOfWeek) {
-        int monthDays;
+        int monthDays = calculateMonthDays(endingDay, daysOfWeek);
         LocalDate localDate = endingDay.getDayDate();
-        YearMonth ym;
-        ym = calculateYM(localDate, daysOfWeek);
-        monthDays = calculateMonthDays(endingDay, daysOfWeek);
+        YearMonth ym = calculateYM(localDate, daysOfWeek);
         fillMonthTail(daysOfWeek, ym, monthDays);
     }
 
@@ -60,6 +57,7 @@ public final class DaysGenerator {
 
     //Вычисление количества дней хвоста в зависимости от условия
     private static int calculateMonthDays(Day endingDay, DaysOfWeek daysOfWeek) {
+        calendar.setTime(Date.valueOf(endingDay.getDayDate()));
         if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
             return endingDay.getDayOfWeek().ordinal() + 1 == 1 ? 6 : calendar.get(Calendar.DAY_OF_WEEK) - 2;
         } else {
