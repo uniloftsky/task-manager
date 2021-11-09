@@ -44,15 +44,13 @@ public final class DaysGenerator {
 
     //Вычисление значения переменной YearMonth в зависимости от условия
     private static YearMonth calculateYM(LocalDate localDate, DaysOfWeek daysOfWeek) {
+        tempDaysList.clear();
         if (daysOfWeek.equals(DaysOfWeek.MONDAY)) {
-            tempDaysList.clear();
             localDate = localDate.minusMonths(1);
-            return YearMonth.of(localDate.getYear(), localDate.getMonth());
         } else {
-            tempDaysList.clear();
             localDate = localDate.plusMonths(1);
-            return YearMonth.of(localDate.getYear(), localDate.getMonth());
         }
+        return YearMonth.of(localDate.getYear(), localDate.getMonth());
     }
 
     //Вычисление количества дней хвоста в зависимости от условия
